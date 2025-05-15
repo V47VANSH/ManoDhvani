@@ -11,5 +11,5 @@ dependencies = [
     "pydub>=0.25.1",
     "torch>=2.7.0",
     "transformers>=4.51.3",
-    "whisper>=1.1.10",
+    "openai-whisper @ git+https://github.com/openai/whisper.git@main",
 ]
