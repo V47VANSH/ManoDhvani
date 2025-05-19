@@ -12,4 +12,6 @@ dependencies = [
     "torch>=2.7.0",
     "transformers>=4.51.3",
     "openai-whisper @ git+https://github.com/openai/whisper.git@main",
+    "numpy>=2.2.5",
+    "praat-parselmouth>=0.4.5",
 ]
