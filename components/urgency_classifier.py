@@ -64,7 +64,6 @@ CATEGORY_KEYWORDS = {
 }
 
 
-
 def classify_urgency(transcripted_text):
     transcript_lower = transcripted_text.lower()
 
