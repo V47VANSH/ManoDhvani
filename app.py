@@ -7,6 +7,8 @@ from NLP.nlp_analysis import calculate_urgency
 from components.log_manager import display_log, save_to_log
 import tempfile
 from utils.setup_ffmpeg import ensure_ffmpeg
+from components.audio_visualiser import visualise_audio
+
 ensure_ffmpeg()
 
 
@@ -20,6 +22,7 @@ def main():
 
     if audio_bytes:
         st.audio(audio_bytes, format='audio/wav')
+        visualise_audio(audio_bytes)
 
         # 💾 Save uploaded audio to a temporary file
         with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp_file:
