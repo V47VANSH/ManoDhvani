@@ -1,6 +1,6 @@
 from keywords.keywords import *
 
-def calculate_urgency_percentage(text):
+def calculate_urgency(text):
     text = text.lower()
     score = 0
     max_score = 0
@@ -24,11 +24,11 @@ def calculate_urgency_percentage(text):
     percentage = (score / max_score) * 100
 
     if percentage >= 66:
-        label = "High Urgency"
+        urgency_label = "High Urgency"
     elif percentage >= 33:
-        label = "Medium Urgency"
+        urgency_label = "Medium Urgency"
     else:
-        label = "Low Urgency"
+        urgency_label = "Low Urgency"
 
-    return percentage, label
+    return percentage, urgency_label
 

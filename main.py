@@ -13,4 +13,3 @@ def process_emergency_audio(file_path):
 if __name__ == "__main__":
     file = "audio_files/sample_audio.mp4" 
     process_emergency_audio(file)
-

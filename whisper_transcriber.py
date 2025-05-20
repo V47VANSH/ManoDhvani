@@ -1,4 +1,7 @@
 import whisper
+from utils.setup_ffmpeg import ensure_ffmpeg
+
+ensure_ffmpeg()
 
 model = whisper.load_model("base")
 

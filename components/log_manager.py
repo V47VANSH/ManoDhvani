@@ -7,9 +7,9 @@ from datetime import datetime
 
 LOG_PATH = "data/logs.csv"
 
-# Ensure the logs.csv file exists
+# Ensure the logs.csv file exists with headers
 def initialize_log():
-    if not os.path.exists(LOG_PATH):
+    if not os.path.exists(LOG_PATH) or os.path.getsize(LOG_PATH) == 0:
         df = pd.DataFrame(columns=[
             "Timestamp", "Filename", "Emotion", "Confidence", 
             "Urgency", "Category", "Transcript"
@@ -18,7 +18,7 @@ def initialize_log():
 
 initialize_log()
 
-def save_to_log(filename, emotion, confidence, urgency, category, transcript):
+def save_to_log(filename, emotion, confidence, urgency_label, category, percentage, transcripted_text):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     new_entry = pd.DataFrame([{
@@ -26,24 +26,32 @@ def save_to_log(filename, emotion, confidence, urgency, category, transcript):
         "Filename": filename,
         "Emotion": emotion,
         "Confidence": round(confidence, 2),
-        "Urgency": urgency,
+        "Urgency": urgency_label,
         "Category": category,
-        "Transcript": transcript.strip()
+        "Percentage": round(percentage, 2),
+        "Transcript": transcripted_text.strip()
     }])
 
     try:
-        df = pd.read_csv(LOG_PATH)
-        df = pd.concat([new_entry, df], ignore_index=True)
-    except FileNotFoundError:
+        if os.path.exists(LOG_PATH) and os.path.getsize(LOG_PATH) > 0:
+            df = pd.read_csv(LOG_PATH)
+            df = pd.concat([new_entry, df], ignore_index=True)
+        else:
+            df = new_entry
+    except (FileNotFoundError, pd.errors.EmptyDataError):
         df = new_entry
 
     df.to_csv(LOG_PATH, index=False)
 
 def display_log():
     try:
-        df = pd.read_csv(LOG_PATH)
-        st.sidebar.dataframe(df.head(10), use_container_width=True)
-        with st.sidebar.expander("📥 Download Logs"):
-            st.download_button("Download CSV", df.to_csv(index=False), file_name="call_logs.csv")
+        if os.path.exists(LOG_PATH) and os.path.getsize(LOG_PATH) > 0:
+            df = pd.read_csv(LOG_PATH)
+            st.sidebar.dataframe(df.head(10), use_container_width=True)
+            with st.sidebar.expander("📥 Download Logs"):
+                st.download_button("Download CSV", df.to_csv(index=False), file_name="call_logs.csv")
+        else:
+            st.sidebar.write("No logs found.")
     except Exception as e:
-        st.sidebar.write("No logs found.")
+        st.sidebar.write("Error loading logs.")
+        st.sidebar.text(str(e))
