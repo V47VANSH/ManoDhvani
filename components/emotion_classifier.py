@@ -2,19 +2,30 @@
 
 import random
 
-# Dummy emotion classes (replace with your model's output classes)
+# Placeholder emotion classes – must match those your real model will use
 EMOTIONS = ["Neutral", "Angry", "Fear", "Distress", "Happy", "Sad"]
 
 def classify_emotion(audio_bytes):
     """
-    Simulate classification - replace with real model inference.
-    Returns (emotion, confidence, emotion_probabilities_dict)
+    Placeholder classification logic for UI testing.
+    Replace this with actual model inference later.
+    
+    Returns:
+        top_emotion (str): predicted label
+        confidence (float): confidence score
+        emotion_probs (dict): dictionary of probabilities for each emotion
     """
-    # Replace this with actual model prediction
-    emotion_probs = {e: round(random.uniform(0.05, 0.4), 2) for e in EMOTIONS}
-    emotion_probs = {k: v / sum(emotion_probs.values()) for k, v in emotion_probs.items()}
+    # Placeholder deterministic logic for testing
+    dummy_probs = {
+        "Neutral": 0.1,
+        "Angry": 0.25,
+        "Fear": 0.15,
+        "Distress": 0.3,
+        "Happy": 0.1,
+        "Sad": 0.1
+    }
 
-    top_emotion = max(emotion_probs, key=emotion_probs.get)
-    confidence = emotion_probs[top_emotion]
+    top_emotion = max(dummy_probs, key=dummy_probs.get)
+    confidence = dummy_probs[top_emotion]
 
-    return top_emotion, confidence, emotion_probs
+    return top_emotion, confidence, dummy_probs

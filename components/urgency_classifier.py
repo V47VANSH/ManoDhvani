@@ -63,39 +63,12 @@ CATEGORY_KEYWORDS = {
     ]
 }
 
-URGENCY_KEYWORDS = {
-    "High": [
-        "help", "urgent", "immediately", "now", "emergency", "critical", "dying",
-        "serious", "danger", "need help", "can't wait", "come fast", "need now",
-        "hurry", "life or death", "please save", "get here quick", "rushing", "call police",
-        "fatal", "life-threatening", "right now", "in big trouble", "massive issue",
-        "collapsed", "not moving", "bleeding badly", "severely hurt", "about to die",
-        "out of control", "I'm scared", "I fear for life", "fire broke out", "armed attacker"
-    ],
-    "Medium": [
-        "soon", "need assistance", "problem", "issue", "not urgent but serious", "concern",
-        "some help", "situation", "help needed", "please come", "respond", "should act",
-        "minor injury", "careful", "come when possible", "please send someone",
-        "dangerous but stable", "in trouble", "serious matter", "might escalate", "some risk",
-        "not severe", "come soon", "moderate concern", "possible threat", "caution needed",
-        "waiting for help", "uncertain", "weird situation", "not safe"
-    ],
-    "Low": [
-        "question", "inquiry", "curious", "clarification", "just asking", "mild issue",
-        "simple help", "non-emergency", "not urgent", "confused", "seeking advice",
-        "routine", "low risk", "not in danger", "feel unsure", "want info", "mild concern",
-        "casual", "just reporting", "just letting you know", "general info", "checking in",
-        "everything fine", "little help", "no rush", "advice please", "suggest something",
-        "don't know what to do", "tiny issue", "not critical"
-    ]
-}
 
 
-def classify_urgency(transcript, emotion):
-    transcript_lower = transcript.lower()
+def classify_urgency(transcripted_text):
+    transcript_lower = transcripted_text.lower()
 
-    # Default values
-    urgency = "Medium"
+    # Default value
     category = "General"
 
     # Determine category
@@ -104,14 +77,4 @@ def classify_urgency(transcript, emotion):
             category = cat
             break
 
-    # Determine urgency
-    for level, keywords in URGENCY_KEYWORDS.items():
-        if any(kw in transcript_lower for kw in keywords):
-            urgency = level
-            break
-
-    # Optional: boost urgency if emotion is aggressive/distressed
-    if emotion.lower() in ["angry", "distress", "fear"] and urgency != "High":
-        urgency = "High"
-
-    return urgency, category
+    return category
