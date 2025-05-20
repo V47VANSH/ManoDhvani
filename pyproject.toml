@@ -14,4 +14,5 @@ dependencies = [
     "openai-whisper @ git+https://github.com/openai/whisper.git@main",
     "numpy>=2.2.5",
     "praat-parselmouth>=0.4.5",
+    "opensmile>=2.5.1",
 ]
