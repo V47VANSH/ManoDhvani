@@ -33,27 +33,71 @@ This tool captures and analyzes audio from distress/emergency calls, classifies 
 
 ---
 
-## 🧠 ML/DL Architecture
+## 🧠 Model Overview
 
-### 🎧 Audio Preprocessing
-- Uploaded or recorded `.wav` files are split into 1-second segments using `pydub`.
-- Silent or noisy chunks are filtered out to maintain input quality.
+This project employs a hybrid deep learning architecture that combines **CNNs** for spatial feature extraction with **LSTM layers** for temporal modeling. It is purpose-built for emotion recognition from variable-length audio signals, especially under real-time, noisy, or low-resource conditions.
 
-### 🎼 Feature Extraction
-- Each chunk is transformed into a numerical vector using:
-  - **MFCCs (Mel-Frequency Cepstral Coefficients)**
-  - **Chroma Features**
-  - **Zero-Crossing Rate**
-- Implemented via `librosa` and `numpy`.
+### 🔍 Key Features
+- **Multi-channel feature fusion** across acoustic, spectral, and statistical domains
+- **Temporal state modeling** using bidirectional LSTM layers
+- Optimized for **emotion detection in emergency call scenarios**
 
-### 🤖 Emotion Classification
-- A trained **deep learning model** (e.g., CNN or LSTM) processes the extracted features.
-- Recognizes the following 6 emotional states:
-  - `Neutral`, `Angry`, `Fear`, `Distress`, `Happy`, `Sad`
-- Outputs:
-  - Predicted emotion
-  - Confidence score
-  - Emotion distribution (for visualization)
+---
+
+## 🏗 Model Architecture Summary
+
+> **Input:** `(T, F, 5)` feature tensor  
+> `T` = time steps, `F` = feature dimension, `5` = number of feature channels
+
+**Pipeline:**
+
+### 🔧 Core Components
+
+| Component         | Configuration                            |
+|------------------|------------------------------------------|
+| **Input Shape**   | (Time, Frequency, Channels)              |
+| **CNN Layers**    | 2–4 Conv2D layers (3×3 kernel)           |
+| **Pooling**       | MaxPooling2D (2×2)                       |
+| **Normalization** | BatchNorm after each Conv layer         |
+| **LSTM Layers**   | 1–2 BiLSTM (128–256 units)               |
+| **Dense Layers**  | 1–2 layers with ReLU + Dropout           |
+| **Output Layer**  | Softmax over emotion categories          |
+| **Optimizer**     | Adam or RMSprop                          |
+| **Loss Function** | Categorical Cross-Entropy                |
+
+---
+
+## 📊 Multi-Channel Audio Feature Stack
+
+The model operates on stacked multi-view audio features, enriching emotional context through complementary representations.
+
+| Channel | Feature Type       | Description                                      |
+|---------|--------------------|--------------------------------------------------|
+| 1       | **MFCCs**          | Captures the spectral envelope of audio         |
+| 2       | **Chroma STFT**    | Harmonic energy mapped to pitch classes         |
+| 3       | **Spectral Contrast** | Tonal peak–valley contrast across sub-bands |
+| 4       | **LLDs (OpenSMILE)** | Energy, pitch, jitter, shimmer, etc.         |
+| 5       | **Mel-Spectrogram**  | Time-frequency map with log-scaled energy    |
+
+> These are preprocessed and stacked into a `(T, F, 5)` tensor per audio sample.
+
+---
+
+## 🎯 Emotion Recognition Targets
+
+The model is trained to recognize the following emotional states:
+
+- 😐 Neutral  
+- 😠 Angry  
+- 😨 Fear  
+- 😫 Distress  
+- 🙂 Happy  
+- 😢 Sad
+
+### Output:
+- Predicted **emotion label**
+- **Confidence score**
+- Full **emotion probability distribution** (for visualization)
 
 ---
 
