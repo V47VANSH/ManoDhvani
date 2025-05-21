@@ -1,58 +1,151 @@
-🚨 Emergency Call Analyzer
-A real-time voice analysis tool designed for emergency response systems. This dashboard captures and analyzes audio from distress/emergency calls, classifies the speaker's emotional state, identifies urgency levels, transcribes speech to text, and categorizes the situation (e.g., medical, fire, crime, domestic abuse, accident, mental health) — all within a unified and intuitive interface.
+# 🚨 Emergency Call Analyzer
 
-🔍 Features
-🎙️ Audio Input: Record voice directly via microphone or upload .wav audio files.
+**A real-time voice analysis dashboard for emergency response systems**
 
-📊 Audio Visualization: Real-time waveform and frequency visualizations as seen in control rooms.
+This tool captures and analyzes audio from distress/emergency calls, classifies the speaker's **emotional state**, detects **urgency categories**, transcribes **speech to text**, and identifies potential emergency types — all within a unified and intuitive interface.
 
-🤖 Emotion Detection: Deep learning-based emotion classifier trained on short audio chunks.
+---
 
-🔈 Speech Transcription: Converts speech to text using automatic speech recognition (ASR).
+## 🔍 Features
 
-🚨 Emergency Categorization: Classifies calls into categories such as Medical, Crime, Fire, Domestic Abuse, Accident, or Mental Health based on transcribed keywords.
+- 🎙️ **Audio Input**  
+  Record voice via microphone or upload `.wav` audio files.
 
-📈 Visual Dashboard: Bar chart visualizations of emotion probabilities and dynamic summaries for quick decision making.
+- 📊 **Audio Visualization**  
+  Real-time waveform and frequency plots — like those seen in control rooms.
 
-📝 Logging: Dashboard maintains an internal log for test/demo calls, aiding responders or analysts.
+- 🤖 **Emotion Detection**  
+  Deep learning-based emotion classifier trained on extracted audio features.
 
-🧠 ML/DL Architecture
-The backend pipeline consists of:
+- 🔈 **Speech Transcription**  
+  Converts speech to text using automatic speech recognition (ASR).
 
-🎧 Audio Preprocessing
-Incoming .wav files are split into 1-second chunks using pydub.
+- 🚨 **Emergency Categorization**  
+  Classifies the call into:  
+  `Medical`, `Crime`, `Fire`, `Domestic Abuse`, `Accident`, or `Mental Health`  
+  based on keywords found in the transcript.
 
-Silent or incomplete chunks are discarded to maintain quality.
+- 📈 **Visual Dashboard**  
+  Bar chart visualizations of emotion probabilities with urgency summary.
 
-🎼 Feature Extraction
-Mel-frequency cepstral coefficients (MFCCs), chroma, and zero-crossing rate features are extracted from each chunk using librosa and numpy.
+- 📝 **Logging System**  
+  Keeps a structured log of all test/demo calls for quick reference and audits.
 
-Resulting feature vectors are fed into the classifier model.
+---
 
-🤖 Emotion Classifier
-A deep learning model (e.g., CNN or LSTM) trained on multi-class labeled emergency call data.
+## 🧠 ML/DL Architecture
 
-Trained to recognize 6 emotions: Neutral, Angry, Fear, Distress, Happy, and Sad.
+### 🎧 Audio Preprocessing
+- Uploaded or recorded `.wav` files are split into 1-second segments using `pydub`.
+- Silent or noisy chunks are filtered out to maintain input quality.
 
-💻 Installation & Running Locally
+### 🎼 Feature Extraction
+- Each chunk is transformed into a numerical vector using:
+  - **MFCCs (Mel-Frequency Cepstral Coefficients)**
+  - **Chroma Features**
+  - **Zero-Crossing Rate**
+- Implemented via `librosa` and `numpy`.
+
+### 🤖 Emotion Classification
+- A trained **deep learning model** (e.g., CNN or LSTM) processes the extracted features.
+- Recognizes the following 6 emotional states:
+  - `Neutral`, `Angry`, `Fear`, `Distress`, `Happy`, `Sad`
+- Outputs:
+  - Predicted emotion
+  - Confidence score
+  - Emotion distribution (for visualization)
+
+---
+
+## 📦 Installation & Running Locally
+
+### 1️⃣ Clone the repository
+
+```bash
 git clone https://github.com/yourusername/emergency-call-analyzer.git
 cd emergency-call-analyzer
+```
+
+### 2️⃣ Install the dependencies
+
+```bash
 pip install -r requirements.txt
-python app.py
-If you're on Windows and FFmpeg isn't globally installed, setup_ffmpeg.py automatically loads a bundled copy — no manual setup needed.
+```
 
-📦 Dependencies
-streamlit
+3️⃣ Run the Streamlit app
+```bash
+python -m streamlit run app.py
+```
 
-pydub
+🪟 On Windows and facing FFmpeg issues?
+Run the following to use the bundled version automatically:
 
-numpy, scipy, pandas
+```bash
+python setup_ffmpeg.py
+```
 
-librosa
 
-whisper or speechrecognition (for transcription)
+## 🖼️ Project Screenshots
 
-matplotlib, plotly (for audio visualization)
+### 🎛️ Home - Audio Input  
+![Main Dashboard](assets/audio_upload.png)
 
-🎯 Use Case
-This dashboard is ideal for emergency service control rooms or mental health helplines. It helps prioritize calls based on emotional distress or urgency category, enhancing real-time decision-making.
+### 📈 Emotion - Detection  
+![Emotion - Fear](assets/fear.png)
+![Emotion - Neutral](assets/neutral.png)
+![Emotion - Angrys](assets/angry.png)
+
+### 📋 Transcription and Categorization  
+![Transcription and Categorization](assets/transcript&emergency_insights.png)
+
+### 📋 Waveform Visualisation  
+![Waveform Visualisation](assets/waveform.png)
+
+### 📋 Spectogram Visualisation
+![Spectogram Visualisation](assets/spectogram.png)
+
+### 📋 Call Logs For Record
+![Call Logs For Record](assets/logs.png)
+
+
+## 🎯 Use Case
+
+This project is tailored for:
+
+- Emergency service control rooms (e.g., 112/911 centers)
+- Mental health helplines
+- Voice surveillance in smart city frameworks
+- Field testing and research in crisis communication
+
+By identifying emotional distress and matching context to predefined urgency categories, responders are better equipped to prioritize calls effectively.
+
+---
+
+## 🚀 Features
+
+- 🎤 Audio Upload & Recording  
+- 🧠 Real-time Emotion Detection  
+- 🗣️ Automatic Speech Transcription  
+- 🏷️ Keyword-based Urgency Categorization  
+- 📊 Visualized Emotion Probabilities  
+- 📁 Simple UI built using [Streamlit](https://streamlit.io)
+
+---
+
+## ⚙️ Tech Stack
+
+- **Voice Feature Extraction**: `librosa`, `pydub`  
+- **Transcription**: OpenAI Whisper / `SpeechRecognition`  
+- **Emotion Model**: Custom-trained deep learning model  
+- **UI/UX**: `Streamlit`  
+- **Audio Handling**: Optional FFmpeg setup for Windows (`setup_ffmpeg.py`)
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! Feel free to fork the repo and submit improvements or suggestions via PRs.
+
+---
+
+📢 _If you use or extend this project, consider ⭐ starring the repository!_
