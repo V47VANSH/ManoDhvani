@@ -1,14 +1,27 @@
-Timestamp,Filename,Emotion,Confidence,Urgency,Category,Percentage,Transcript
-2025-05-20 22:57:57,1001_IEO_HAP_MD.wav,Distress,0.3,Not Urgent,General,0.0,It's 11 o'clock.
-2025-05-20 22:53:53,1001_IEO_SAD_MD.wav,Distress,0.3,Not Urgent,General,0.0,Slow to clock.
-2025-05-20 21:40:26,1001_DFA_SAD_XX.wav,Distress,0.3,Not Urgent,General,0.0,Don't forget to check it
-2025-05-20 21:25:46,1001_DFA_FEA_XX.wav,Distress,0.3,Not Urgent,General,0.0,Don't forget to jack it!
-2025-05-20 21:25:35,1001_DFA_ANG_XX.wav,Distress,0.3,Not Urgent,General,0.0,Don't forget a jacket
-2025-05-20 21:25:20,1002_IOM_HAP_XX.wav,Distress,0.3,Not Urgent,General,0.0,I'm on my way to the meeting.
-2025-05-20 21:25:08,1002_IEO_SAD_LO.wav,Distress,0.3,Not Urgent,General,0.0,It's eleven o'clock.
-2025-05-20 21:24:55,1001_IOM_FEA_XX.wav,Distress,0.3,Not Urgent,General,0.0,I'm on my way to the meeting.
-2025-05-20 21:24:28,1001_ITH_NEU_XX.wav,Distress,0.3,Medium Urgency,General,33.33,I think I have a doctor's appointment.
-2025-05-20 18:08:40,1001_IEO_HAP_HI.wav,Distress,0.3,Not Urgent,General,0.0,It's 11 o'clock!
-2025-05-20 17:44:44,1001_IEO_HAP_HI.wav,Distress,0.3,Not Urgent,General,0.0,It's 11 o'clock!
-2025-05-20 14:52:34,1001_DFA_SAD_XX.wav,Distress,0.3,Not Urgent,General,0.0,Don't forget to check it
-2025-05-20 14:52:05,1001_DFA_SAD_XX.wav,Distress,0.3,Not Urgent,General,0.0,Don't forget to check it
+Timestamp,Filename,Emotion,Confidence,Urgency_Level,Urgency_Category,Urgency_Percentage,Transcript,Urgency,Category,Percentage
+2025-05-21 21:10:52,test4.wav,Distress,0.93,High Urgency,Medical,100.0,My mother just collapsed and she is not breathing properly. Please send an ambulance quickly. I love my mother. God please help.,,,
+2025-05-21 21:10:36,test3.wav,Fear,0.88,Not Urgent,Domestic Abuse,0.0,"He is yelling again and throwing things at me. Please, please, I'm scared and I don't know what to do. He's doing it again.",,,
+2025-05-21 19:27:28,test6.wav,Sad,0.89,,,,I feel completely alone. I can't sleep. I have been crying for days now. I just need someone to talk to. Why is this life so tough? I don't feel like I should live.,Medium Urgency,Mental Health,50.0
+2025-05-21 19:27:18,test5.wav,Happy,0.95,,,,Thank you so much for your help early today. Everything is fine now and I really appreciate it.,Not Urgent,General,0.0
+2025-05-21 19:27:09,test4.wav,Distress,0.93,,,,My mother just collapsed and she is not breathing properly. Please send an ambulance quickly. I love my mother. God please help.,High Urgency,Medical,100.0
+2025-05-21 19:26:57,test3.wav,Fear,0.88,,,,"He is yelling again and throwing things at me. Please, please, I'm scared and I don't know what to do. He's doing it again.",Not Urgent,Domestic Abuse,0.0
+2025-05-21 19:26:45,test2.wav,Angry,0.9,,,,"Someone just broke into my store, he smashed the window and ran off with my stuff. That bastard.",Not Urgent,General,0.0
+2025-05-21 19:26:24,test1.wav,Neutral,0.85,,,,"Hello, I just saw a car crash on the main road. No one's hurt but traffic is getting out. Can you please help?",High Urgency,Medical,77.78
+2025-05-21 19:22:38,test3.wav,Neutral,0.5,,,,"He is yelling again and throwing things at me. Please, please, I'm scared and I don't know what to do. He's doing it again.",Not Urgent,Domestic Abuse,0.0
+2025-05-21 19:21:56,test2.wav,Neutral,0.5,,,,"Someone just broke into my store, he smashed the window and ran off with my stuff. That bastard.",Not Urgent,General,0.0
+2025-05-21 19:21:29,test1.wav,Neutral,0.5,,,,"Hello, I just saw a car crash on the main road. No one's hurt but traffic is getting out. Can you please help?",High Urgency,Medical,77.78
+2025-05-21 19:19:06,test1.wav,Distress,0.3,,,,"Hello, I just saw a car crash on the main road. No one's hurt but traffic is getting out. Can you please help?",High Urgency,Medical,77.78
+2025-05-21 18:34:27,testing.wav,Distress,0.3,,,,"Oh my God, the fire broke out, please help somebody.",High Urgency,Fire,100.0
+2025-05-20 22:57:57,1001_IEO_HAP_MD.wav,Distress,0.3,,,,It's 11 o'clock.,Not Urgent,General,0.0
+2025-05-20 22:53:53,1001_IEO_SAD_MD.wav,Distress,0.3,,,,Slow to clock.,Not Urgent,General,0.0
+2025-05-20 21:40:26,1001_DFA_SAD_XX.wav,Distress,0.3,,,,Don't forget to check it,Not Urgent,General,0.0
+2025-05-20 21:25:46,1001_DFA_FEA_XX.wav,Distress,0.3,,,,Don't forget to jack it!,Not Urgent,General,0.0
+2025-05-20 21:25:35,1001_DFA_ANG_XX.wav,Distress,0.3,,,,Don't forget a jacket,Not Urgent,General,0.0
+2025-05-20 21:25:20,1002_IOM_HAP_XX.wav,Distress,0.3,,,,I'm on my way to the meeting.,Not Urgent,General,0.0
+2025-05-20 21:25:08,1002_IEO_SAD_LO.wav,Distress,0.3,,,,It's eleven o'clock.,Not Urgent,General,0.0
+2025-05-20 21:24:55,1001_IOM_FEA_XX.wav,Distress,0.3,,,,I'm on my way to the meeting.,Not Urgent,General,0.0
+2025-05-20 21:24:28,1001_ITH_NEU_XX.wav,Distress,0.3,,,,I think I have a doctor's appointment.,Medium Urgency,General,33.33
+2025-05-20 18:08:40,1001_IEO_HAP_HI.wav,Distress,0.3,,,,It's 11 o'clock!,Not Urgent,General,0.0
+2025-05-20 17:44:44,1001_IEO_HAP_HI.wav,Distress,0.3,,,,It's 11 o'clock!,Not Urgent,General,0.0
+2025-05-20 14:52:34,1001_DFA_SAD_XX.wav,Distress,0.3,,,,Don't forget to check it,Not Urgent,General,0.0
+2025-05-20 14:52:05,1001_DFA_SAD_XX.wav,Distress,0.3,,,,Don't forget to check it,Not Urgent,General,0.0

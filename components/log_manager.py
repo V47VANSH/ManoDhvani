@@ -12,7 +12,7 @@ def initialize_log():
     if not os.path.exists(LOG_PATH) or os.path.getsize(LOG_PATH) == 0:
         df = pd.DataFrame(columns=[
             "Timestamp", "Filename", "Emotion", "Confidence", 
-            "Urgency", "Category", "Transcript"
+            "Urgency_Level", "Urgency_Category", "Urgency_Percentage" "Transcript"
         ])
         df.to_csv(LOG_PATH, index=False)
 
@@ -26,9 +26,9 @@ def save_to_log(filename, emotion, confidence, urgency_label, category, percenta
         "Filename": filename,
         "Emotion": emotion,
         "Confidence": round(confidence, 2),
-        "Urgency": urgency_label,
-        "Category": category,
-        "Percentage": round(percentage, 2),
+        "Urgency_Level": urgency_label,
+        "Urgency_Category": category,
+        "Urgency_Percentage": round(percentage, 2),
         "Transcript": transcripted_text.strip()
     }])
 
@@ -55,3 +55,4 @@ def display_log():
     except Exception as e:
         st.sidebar.write("Error loading logs.")
         st.sidebar.text(str(e))
+

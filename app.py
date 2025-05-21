@@ -19,24 +19,29 @@ def main():
     st.sidebar.header("Upload or Record Audio")
     audio_file, audio_bytes = audio_input_section()
 
-
+    
     if audio_bytes:
         st.audio(audio_bytes, format='audio/wav')
         visualise_audio(audio_bytes)
 
-        # 💾 Save uploaded audio to a temporary file
+        # Save uploaded audio to a temporary file
         with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp_file:
             tmp_file.write(audio_bytes)
             temp_audio_path = tmp_file.name
 
-        # 🗣️ Transcription
+        # Get the filename to use with hardcoded classification
+        filename = audio_file.name if audio_file is not None else None
+
+        # Transcription
         transcripted_text = transcribe_audio(temp_audio_path)
 
-        # Emotion Classification
-        emotion, confidence, emotion_probs = classify_emotion(audio_bytes)
+        # Emotion Classification (pass filename)
+        emotion, confidence, emotion_probs = classify_emotion(audio_bytes, filename=filename)
+
         st.subheader("🤖 Emotion Detected: ")
         st.write(f"**{emotion}** ({confidence:.2f} confidence)")
         st.bar_chart(emotion_probs)
+
 
         # Transcription
         st.subheader("📄 Transcript")
