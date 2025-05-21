@@ -10,7 +10,6 @@ import opensmile
 from opensmile import FeatureSet, FeatureLevel
 
 
-
 def extract_features_opsm(y, sr) -> pd.DataFrame:
     # Create an instance of the Smile class with a standard feature set
     # ComParE_2016 is a popular set for emotion recognition
